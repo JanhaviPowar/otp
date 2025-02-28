@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OTP Verification</title>
+    <link rel="stylesheet" href="new.css">
+</head>
+<body>
+    <div class="otp-container">
+        <h1>OTP Verification</h1>
+        <p>Enter the OTP sent to your phone or email</p>
+        <div id="otpDisplay" class="otp-display"></div>
+        <form id="otpForm">
+            <input type="text" id="otpInput" maxlength="1">
+            <input type="text" id="otpInput" maxlength="1">
+            <input type="text" id="otpInput" maxlength="1">
+            <input type="text" id="otpInput" maxlength="1">
+            <input type="text" id="otpInput" maxlength="1">
+            <input type="text" id="otpInput" maxlength="1">
+            <button type="submit">Verify OTP</button>
+        </form>
+        <p id="errorMessage" class="error-message"></p>
+    </div>
+
+    <script>
+        function generateOTP() {
+            return Math.floor(100000 + Math.random() * 900000);
+        }
+        const generatedOTP = generateOTP();
+        document.getElementById('otpDisplay').innerText = `Your OTP is: ${generatedOTP}`;
+        document.getElementById('otpForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const enteredOTP = document.getElementById('otpInput').value;
+
+            if (enteredOTP == generatedOTP) {
+                alert("OTP verified successfully!");
+                window.location.href = 'welcome.html'; 
+            } else {
+                document.getElementById('errorMessage').innerText = 'Invalid OTP. Please try again.';
+            }
+        });
+    </script>
+</body>
+</html>
